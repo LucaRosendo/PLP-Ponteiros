@@ -300,14 +300,19 @@ void demonstrar\_armadilhas() {
 }
 
 ## **3.2 Funcionamento do Código**
+    Esta seção analisa cada módulo do programa, explicando a semântica do código, o gerenciamento de memória e as melhores práticas associadas.
 
 ### **3.2.1 Operadores & e \***
+    O módulo demonstra que & obtém o endereço de uma variável e * desreferencia um ponteiro. Exemplo: int var = 42; int *ptr = &var; *ptr = 100; — após a operação, var passa a valer 100. A observação prática é que ptr armazena endereço em stack e *ptr acessa conteúdo. É recomendável imprimir endereços com (void*) para portabilidade.
 
 ### **3.2.2 Arrays e aritmética de ponteiros**
+    Um array int arr[5] ocupa memória contígua na stack. Em contextos expressivos, arr decai para int* (endereço do primeiro elemento), permitindo *(arr + i) como equivalente a arr[i]. A diferença entre arr e &arr (tipo e semântica) é explicada e ilustrada com impressão de endereços.
 
 ### **3.2.3 char\[\] vs const char\***
+    char s1[] = "Hello"; cria um array mutável; const char *s2 = "World"; aponta para literal de texto tipicamente read-only. Modificar o literal provoca comportamento indefinido. A prática recomendada é declarar literais como const char* e usar malloc/arrays quando for preciso modificar a string.
 
 ### **3.2.4 Passagem por referência: função swap**
+    A função swap(int *a, int *b) troca valores apontados por a e b sem copiar toda a estrutura. É eficiente e demonstra manipulação direta de memória. Para tornar API robusta em código de produção, checar NULL em parâmetros públicos.
 
 ### **3.2.5 Alocação dinâmica de matrizes (int \*\*)**
 
